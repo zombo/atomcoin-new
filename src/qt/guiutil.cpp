@@ -1,7 +1,7 @@
 #include "guiutil.h"
-#include "bitcoinaddressvalidator.h"
+#include "atomcoinaddressvalidator.h"
 #include "walletmodel.h"
-#include "bitcoinunits.h"
+#include "atomcoinunits.h"
 #include "util.h"
 #include "init.h"
 
@@ -52,7 +52,7 @@ QString dateTimeStr(qint64 nTime)
     return dateTimeStr(QDateTime::fromTime_t((qint32)nTime));
 }
 
-QFont bitcoinAddressFont()
+QFont atomcoinAddressFont()
 {
     QFont font("Monospace");
     font.setStyleHint(QFont::TypeWriter);
@@ -63,7 +63,7 @@ void setupAddressWidget(QLineEdit *widget, QWidget *parent)
 {
     widget->setMaxLength(BitcoinAddressValidator::MaxAddressLength);
     widget->setValidator(new BitcoinAddressValidator(parent));
-    widget->setFont(bitcoinAddressFont());
+    widget->setFont(atomcoinAddressFont());
 }
 
 void setupAmountWidget(QLineEdit *widget, QWidget *parent)
@@ -77,7 +77,7 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    if(uri.scheme() != QString("bitcoin"))
+    if(uri.scheme() != QString("atomcoin"))
         return false;
 
     SendCoinsRecipient rv;
@@ -122,13 +122,13 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 
 bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert bitcoin:// to bitcoin:
+    // Convert atomcoin:// to atomcoin:
     //
-    //    Cannot handle this later, because bitcoin:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because atomcoin:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("bitcoin://"))
+    if(uri.startsWith("atomcoin://"))
     {
-        uri.replace(0, 10, "bitcoin:");
+        uri.replace(0, 10, "atomcoin:");
     }
     QUrl uriInstance(uri);
     return parseBitcoinURI(uriInstance, out);
@@ -272,7 +272,7 @@ bool ToolTipToRichTextFilter::eventFilter(QObject *obj, QEvent *evt)
 #ifdef WIN32
 boost::filesystem::path static StartupShortcutPath()
 {
-    return GetSpecialFolderPath(CSIDL_STARTUP) / "NovaCoin.lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / "AtomCoin.lnk";
 }
 
 bool GetStartOnSystemStartup()
@@ -354,7 +354,7 @@ boost::filesystem::path static GetAutostartDir()
 
 boost::filesystem::path static GetAutostartFilePath()
 {
-    return GetAutostartDir() / "novacoin.desktop";
+    return GetAutostartDir() / "atomcoin.desktop";
 }
 
 bool GetStartOnSystemStartup()
@@ -392,10 +392,10 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         boost::filesystem::ofstream optionFile(GetAutostartFilePath(), std::ios_base::out|std::ios_base::trunc);
         if (!optionFile.good())
             return false;
-        // Write a bitcoin.desktop file to the autostart directory:
+        // Write a atomcoin.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
-        optionFile << "Name=NovaCoin\n";
+        optionFile << "Name=AtomCoin\n";
         optionFile << "Exec=" << pszExePath << " -min\n";
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -416,10 +416,10 @@ bool SetStartOnSystemStartup(bool fAutoStart) { return false; }
 HelpMessageBox::HelpMessageBox(QWidget *parent) :
     QMessageBox(parent)
 {
-    header = tr("NovaCoin-Qt") + " " + tr("version") + " " +
+    header = tr("AtomCoin-Qt") + " " + tr("version") + " " +
         QString::fromStdString(FormatFullVersion()) + "\n\n" +
         tr("Usage:") + "\n" +
-        "  novacoin-qt [" + tr("command-line options") + "]                     " + "\n";
+        "  atomcoin-qt [" + tr("command-line options") + "]                     " + "\n";
 
     coreOptions = QString::fromStdString(HelpMessage());
 
@@ -428,7 +428,7 @@ HelpMessageBox::HelpMessageBox(QWidget *parent) :
         "  -min                   " + tr("Start minimized") + "\n" +
         "  -splash                " + tr("Show splash screen on startup (default: 1)") + "\n";
 
-    setWindowTitle(tr("NovaCoin-Qt"));
+    setWindowTitle(tr("AtomCoin-Qt"));
     setTextFormat(Qt::PlainText);
     // setMinimumWidth is ignored for QMessageBox so put in non-breaking spaces to make it wider.
     setText(header + QString(QChar(0x2003)).repeated(50));

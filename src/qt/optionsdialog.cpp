@@ -1,7 +1,7 @@
 #include "optionsdialog.h"
 #include "ui_optionsdialog.h"
 
-#include "bitcoinunits.h"
+#include "atomcoinunits.h"
 #include "monitoreddatamapper.h"
 #include "netbase.h"
 #include "optionsmodel.h"
@@ -127,7 +127,7 @@ void OptionsDialog::setMapper()
 {
     /* Main */
     mapper->addMapping(ui->transactionFee, OptionsModel::Fee);
-    mapper->addMapping(ui->bitcoinAtStartup, OptionsModel::StartAtStartup);
+    mapper->addMapping(ui->atomcoinAtStartup, OptionsModel::StartAtStartup);
     mapper->addMapping(ui->detachDatabases, OptionsModel::DetachDatabases);
 
     /* Network */
@@ -199,7 +199,7 @@ void OptionsDialog::showRestartWarning_Proxy()
 {
     if(!fRestartWarningDisplayed_Proxy)
     {
-        QMessageBox::warning(this, tr("Warning"), tr("This setting will take effect after restarting NovaCoin."), QMessageBox::Ok);
+        QMessageBox::warning(this, tr("Warning"), tr("This setting will take effect after restarting AtomCoin."), QMessageBox::Ok);
         fRestartWarningDisplayed_Proxy = true;
     }
 }
@@ -208,7 +208,7 @@ void OptionsDialog::showRestartWarning_Lang()
 {
     if(!fRestartWarningDisplayed_Lang)
     {
-        QMessageBox::warning(this, tr("Warning"), tr("This setting will take effect after restarting NovaCoin."), QMessageBox::Ok);
+        QMessageBox::warning(this, tr("Warning"), tr("This setting will take effect after restarting AtomCoin."), QMessageBox::Ok);
         fRestartWarningDisplayed_Lang = true;
     }
 }

@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = novacoin-qt
+TARGET = atomcoin-qt
 VERSION = 0.7.2
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
@@ -107,7 +107,7 @@ QMAKE_CXXFLAGS_WARN_ON = -fdiagnostics-show-option -Wall -Wextra -Wformat -Wform
 
 # Input
 DEPENDPATH += src src/json src/qt
-HEADERS += src/qt/bitcoingui.h \
+HEADERS += src/qt/atomcoingui.h \
     src/qt/transactiontablemodel.h \
     src/qt/addresstablemodel.h \
     src/qt/optionsdialog.h \
@@ -116,7 +116,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/signverifymessagedialog.h \
     src/qt/aboutdialog.h \
     src/qt/editaddressdialog.h \
-    src/qt/bitcoinaddressvalidator.h \
+    src/qt/atomcoinaddressvalidator.h \
     src/alert.h \
     src/addrman.h \
     src/base58.h \
@@ -157,19 +157,19 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/monitoreddatamapper.h \
     src/qt/transactiondesc.h \
     src/qt/transactiondescdialog.h \
-    src/qt/bitcoinamountfield.h \
+    src/qt/atomcoinamountfield.h \
     src/wallet.h \
     src/keystore.h \
     src/qt/transactionfilterproxy.h \
     src/qt/transactionview.h \
     src/qt/walletmodel.h \
-    src/bitcoinrpc.h \
+    src/atomcoinrpc.h \
     src/qt/overviewpage.h \
     src/qt/csvmodelwriter.h \
     src/crypter.h \
     src/qt/sendcoinsentry.h \
     src/qt/qvalidatedlineedit.h \
-    src/qt/bitcoinunits.h \
+    src/qt/atomcoinunits.h \
     src/qt/qvaluecombobox.h \
     src/qt/askpassphrasedialog.h \
     src/protocol.h \
@@ -182,7 +182,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/netbase.h \
     src/clientversion.h
 
-SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
+SOURCES += src/qt/atomcoin.cpp src/qt/atomcoingui.cpp \
     src/qt/transactiontablemodel.cpp \
     src/qt/addresstablemodel.cpp \
     src/qt/optionsdialog.cpp \
@@ -191,7 +191,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/signverifymessagedialog.cpp \
     src/qt/aboutdialog.cpp \
     src/qt/editaddressdialog.cpp \
-    src/qt/bitcoinaddressvalidator.cpp \
+    src/qt/atomcoinaddressvalidator.cpp \
     src/alert.cpp \
     src/version.cpp \
     src/sync.cpp \
@@ -214,14 +214,14 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/monitoreddatamapper.cpp \
     src/qt/transactiondesc.cpp \
     src/qt/transactiondescdialog.cpp \
-    src/qt/bitcoinstrings.cpp \
-    src/qt/bitcoinamountfield.cpp \
+    src/qt/atomcoinstrings.cpp \
+    src/qt/atomcoinamountfield.cpp \
     src/wallet.cpp \
     src/keystore.cpp \
     src/qt/transactionfilterproxy.cpp \
     src/qt/transactionview.cpp \
     src/qt/walletmodel.cpp \
-    src/bitcoinrpc.cpp \
+    src/atomcoinrpc.cpp \
     src/rpcdump.cpp \
     src/rpcnet.cpp \
     src/rpcmining.cpp \
@@ -233,7 +233,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/crypter.cpp \
     src/qt/sendcoinsentry.cpp \
     src/qt/qvalidatedlineedit.cpp \
-    src/qt/bitcoinunits.cpp \
+    src/qt/atomcoinunits.cpp \
     src/qt/qvaluecombobox.cpp \
     src/qt/askpassphrasedialog.cpp \
     src/protocol.cpp \
@@ -248,7 +248,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/pbkdf2.cpp
 
 RESOURCES += \
-    src/qt/bitcoin.qrc
+    src/qt/atomcoin.qrc
 
 FORMS += \
     src/qt/forms/sendcoinsdialog.ui \
@@ -275,15 +275,15 @@ SOURCES += src/qt/test/test_main.cpp \
 HEADERS += src/qt/test/uritests.h
 DEPENDPATH += src/qt/test
 QT += testlib
-TARGET = novacoin-qt_test
+TARGET = atomcoin-qt_test
 DEFINES += BITCOIN_QT_TEST
 }
 
 CODECFORTR = UTF-8
 
 # for lrelease/lupdate
-# also add new translations to src/qt/bitcoin.qrc under translations/
-TRANSLATIONS = $$files(src/qt/locale/bitcoin_*.ts)
+# also add new translations to src/qt/atomcoin.qrc under translations/
+TRANSLATIONS = $$files(src/qt/locale/atomcoin_*.ts)
 
 isEmpty(QMAKE_LRELEASE) {
     win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\\lrelease.exe
@@ -300,7 +300,7 @@ QMAKE_EXTRA_COMPILERS += TSQM
 
 # "Other files" to show in Qt Creator
 OTHER_FILES += \
-    doc/*.rst doc/*.txt doc/README README.md res/bitcoin-qt.rc src/test/*.cpp src/test/*.h src/qt/test/*.cpp src/qt/test/*.h
+    doc/*.rst doc/*.txt doc/README README.md res/atomcoin-qt.rc src/test/*.cpp src/test/*.h src/qt/test/*.cpp src/qt/test/*.h
 
 # platform specific defaults, if not overridden on command line
 isEmpty(BOOST_LIB_SUFFIX) {
@@ -333,7 +333,7 @@ isEmpty(BOOST_INCLUDE_PATH) {
 }
 
 windows:DEFINES += WIN32
-windows:RC_FILE = src/qt/res/bitcoin-qt.rc
+windows:RC_FILE = src/qt/res/atomcoin-qt.rc
 
 windows:!contains(MINGW_THREAD_BUGFIX, 0) {
     # At least qmake's win32-g++-cross profile is missing the -lmingwthrd
@@ -355,8 +355,8 @@ macx:HEADERS += src/qt/macdockiconhandler.h
 macx:OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm
 macx:LIBS += -framework Foundation -framework ApplicationServices -framework AppKit
 macx:DEFINES += MAC_OSX MSG_NOSIGNAL=0
-macx:ICON = src/qt/res/icons/bitcoin.icns
-macx:TARGET = "NovaCoin-Qt"
+macx:ICON = src/qt/res/icons/atomcoin.icns
+macx:TARGET = "AtomCoin-Qt"
 macx:QMAKE_CFLAGS_THREAD += -pthread
 macx:QMAKE_LFLAGS_THREAD += -pthread
 macx:QMAKE_CXXFLAGS_THREAD += -pthread

@@ -1,6 +1,6 @@
-NovaCoin 0.3.0 BETA
+AtomCoin 0.3.0 BETA
 
-Copyright (c) 2013 NovaCoin Developers
+Copyright (c) 2013 AtomCoin Developers
 Copyright (c) 2011-2012 PPCoin Developers
 Distributed under the MIT/X11 software license, see the accompanying
 file license.txt or http://www.opensource.org/licenses/mit-license.php.
@@ -11,9 +11,9 @@ cryptographic software written by Eric Young (eay@cryptsoft.com).
 
 Intro
 -----
-NovaCoin is a free open source project derived from PPCoin, with
+AtomCoin is a free open source project derived from PPCoin, with
 the goal of providing a long-term energy-efficient scrypt-based crypto-currency.
-Built on the foundation of Bitcoin and PPCoin, innovations such as proof-of-stake
+Built on the foundation of Bitcoin and PPCoin, inatomtions such as proof-of-stake
 help further advance the field of crypto-currency.
 
 -----
@@ -32,7 +32,7 @@ Intro
 -----
 PPCoin is a free open source project derived from Bitcoin, with
 the goal of providing a long-term energy-efficient crypto-currency.
-Built on the foundation of Bitcoin, innovations such as proof-of-stake
+Built on the foundation of Bitcoin, inatomtions such as proof-of-stake
 help further advance the field of crypto-currency.
 
 
@@ -83,6 +83,6 @@ parties.  Users hold the crypto keys to their own money and transact directly
 with each other, with the help of a P2P network to check for double-spending.
 
 
-See the documentation at the bitcoin wiki:
-  https://en.bitcoin.it/wiki/Main_Page
+See the documentation at the atomcoin wiki:
+  https://en.atomcoin.it/wiki/Main_Page
 for help and more information.

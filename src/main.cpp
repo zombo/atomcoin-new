@@ -62,7 +62,7 @@ map<uint256, map<uint256, CDataStream*> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "NovaCoin Signed Message:\n";
+const string strMessageMagic = "AtomCoin Signed Message:\n";
 
 double dHashesPerSec;
 int64 nHPSTimerStart;
@@ -1299,7 +1299,7 @@ bool CTransaction::ConnectInputs(CTxDB& txdb, MapPrevTx inputs,
 {
     // Take over previous transactions' spent pointers
     // fBlock is true when this is called from AcceptBlock when a new best-block is added to the blockchain
-    // fMiner is true when called from the internal bitcoin miner
+    // fMiner is true when called from the internal atomcoin miner
     // ... both are false when called from CTransaction::AcceptToMemoryPool
     if (!IsCoinBase())
     {
@@ -1498,8 +1498,8 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
     // Now that the whole chain is irreversibly beyond that time it is applied to all blocks except the
     // two in the chain that violate it. This prevents exploiting the issue against nodes in their
     // initial block download.
-    bool fEnforceBIP30 = true; // Always active in NovaCoin
-    bool fStrictPayToScriptHash = true; // Always active in NovaCoin
+    bool fEnforceBIP30 = true; // Always active in AtomCoin
+    bool fStrictPayToScriptHash = true; // Always active in AtomCoin
 
     //// issue here: it doesn't know the version
     unsigned int nTxPos;
@@ -1575,7 +1575,7 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
     if (!txdb.WriteBlockIndex(CDiskBlockIndex(pindex)))
         return error("Connect() : WriteBlockIndex for pindex failed");
 
-    // ppcoin: fees are not collected by miners as in bitcoin
+    // ppcoin: fees are not collected by miners as in atomcoin
     // ppcoin: fees are destroyed to compensate the entire network
     if (fDebug && GetBoolArg("-printcreation"))
         printf("ConnectBlock() : destroy=%s nFees=%"PRI64d"\n", FormatMoney(nFees).c_str(), nFees);
@@ -2399,7 +2399,7 @@ bool CheckDiskSpace(uint64 nAdditionalBytes)
         string strMessage = _("Warning: Disk space is low!");
         strMiscWarning = strMessage;
         printf("*** %s\n", strMessage.c_str());
-        uiInterface.ThreadSafeMessageBox(strMessage, "NovaCoin", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+        uiInterface.ThreadSafeMessageBox(strMessage, "AtomCoin", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
         StartShutdown();
         return false;
     }
@@ -2492,7 +2492,7 @@ bool LoadBlockIndex(bool fAllowNew)
         //   vMerkleTree: 4a5e1e
 
         // Genesis block
-        const char* pszTimestamp = "https://bitcointalk.org/index.php?topic=134179.msg1502196#msg1502196";
+        const char* pszTimestamp = "https://atomcointalk.org/index.php?topic=134179.msg1502196#msg1502196";
         CTransaction txNew;
         txNew.nTime = 1360105017;
         txNew.vin.resize(1);
@@ -4258,7 +4258,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
 
     // Make this thread recognisable as the mining thread
-    RenameThread("bitcoin-miner");
+    RenameThread("atomcoin-miner");
 
     // Each thread has its own key and counter
     CReserveKey reservekey(pwallet);

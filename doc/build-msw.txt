@@ -79,6 +79,6 @@ cp *.h miniupnpc/
 Bitcoin
 -------
 DOS prompt:
-cd \bitcoin\src
+cd \atomcoin\src
 mingw32-make -f makefile.mingw
-strip bitcoind.exe
+strip atomcoind.exe
